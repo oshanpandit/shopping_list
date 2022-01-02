@@ -16,6 +16,11 @@ app.get('/',function(req,res){
     res.render('home');
 });
 
+app.get('/profile',function(req,res){
+
+    res.end(<h1>This is the profile section</h1>)
+});
+
 
 app.listen(port,function(err){
 
