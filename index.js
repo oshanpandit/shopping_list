@@ -21,6 +21,11 @@ app.get('/head',function(req,res){
     res.end(<h1>This is the profile section</h1>)
 });
 
+app.get('/number',function(req,res){
+
+    res.end(<h1>This is the number section</h1>)
+});
+
 
 app.listen(port,function(err){
 
