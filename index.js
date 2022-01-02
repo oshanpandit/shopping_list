@@ -16,7 +16,7 @@ app.get('/',function(req,res){
     res.render('home');
 });
 
-app.get('/profile',function(req,res){
+app.get('/head',function(req,res){
 
     res.end(<h1>This is the profile section</h1>)
 });
