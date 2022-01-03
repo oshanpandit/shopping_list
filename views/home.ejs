@@ -3,6 +3,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Shopping List</h1>
+
+    <ul>
+
+        <% for(let i=0;i<shopping_list.length;i++) { %>
+
+            <li>
+
+
+                <p><%=shopping_list[i].item %></p>
+                <p><%=shopping_list[i].brand %></p>
+
+            </li>
+
+        <%}%>
+    </ul>
 </body>
 </html>

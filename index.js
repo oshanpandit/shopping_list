@@ -10,21 +10,39 @@ app.set('view engine','ejs');
 
 app.set('views',path.join(__dirname,'views'));
 
+app.use(express.urlencoded());
+
+
+var shoppingList=[
+
+    {
+
+        item:"Chocolate",
+        brand:"Cadbury"
+    },
+
+    {
+
+        item:"Pendrive",
+        brand:"Sandisk"
+    },
+
+    {
+
+        item:"Monitor",
+        brand:"LG"
+    }
+];
+
 
 app.get('/',function(req,res){
 
-    res.render('home');
+    res.render('home',{
+
+        shopping_list:shoppingList
+    });
 });
 
-app.get('/head',function(req,res){
-
-    res.end(<h1>This is the profile section</h1>)
-});
-
-app.get('/number',function(req,res){
-
-    res.end(<h1>This is the number section</h1>)
-});
 
 
 app.listen(port,function(err){
