@@ -1,10 +1,15 @@
 <html>
 
-    <title>Document</title>
+    <title>Shopping List</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <script src="https://kit.fontawesome.com/20dd008c58.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <h1>Shopping List</h1>
+    <h1 class="heading">Shopping List</h1>
 
+    <section id="main-content">
     <ul>
 
         <% for(let i=0;i<shopping_list.length;i++) { %>
@@ -12,7 +17,14 @@
             <li>
 
 
-                <p><%=shopping_list[i].item %></p>
+                <p style="display: inline-block"><%=shopping_list[i].item %></p>&ensp;&ensp;
+
+                    <a href="/delete-item/?item=<%= shopping_list[i].item %>">
+
+                        <i class="fas fa-times"></i>
+
+                    </a>
+
                 <p><%=shopping_list[i].brand %></p>
 
             </li>
@@ -20,7 +32,12 @@
         <%}%>
     </ul>
 
-    <div>
+</section>
+
+
+
+
+    <div id="form">
 
         <form action="/save-item" method="post">
 

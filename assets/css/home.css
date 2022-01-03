@@ -1,0 +1,28 @@
+.heading{
+
+    font-family: sans-serif;
+
+    font-size: 2rem;
+
+    text-align: center;
+
+    font-style: italic;
+}
+
+#main-content{
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+#form{
+
+    width:100%;
+
+    display: flex;
+
+    justify-content: center;
+}
