@@ -6,6 +6,12 @@ const app=express();
 
 const port=8000;
 
+const connectDb=require('./config/mongoose');
+
+connectDb();
+
+const Shopping=require('./models/shopping');
+
 app.set('view engine','ejs');
 
 app.set('views',path.join(__dirname,'views'));
@@ -15,59 +21,63 @@ app.use(express.urlencoded());
 app.use(express.static('assets'));
 
 
-var shoppingList=[
-
-    {
-
-        item:"Chocolate",
-        brand:"Cadbury"
-    },
-
-    {
-
-        item:"Pendrive",
-        brand:"Sandisk"
-    },
-
-    {
-
-        item:"Monitor",
-        brand:"LG"
-    }
-];
-
-
-
-
 app.get('/',function(req,res){
 
-    res.render('home',{
+   
+    Shopping.find({},function(err,shoppingList){
 
-        shopping_list:shoppingList
+        if(err){
+
+            console.log("Error while showing the contacts");
+
+            return;
+        }
+
+        return res.render('home',{
+
+
+            shopping_list:shoppingList
+
+        });
     });
 });
 
 app.post('/save-item',function(req,res){
 
-    shoppingList.push(req.body);
+    Shopping.create({
 
-    res.redirect('/');
+        item:req.body.item,
+
+        brand:req.body.brand
+    },function(err,newItem){
+
+        if(err){
+
+            console.log("Error in creating an item");
+
+            return;
+        }
+
+        console.log("******",newItem);
+
+        return res.redirect('/');
+
+    });
 });
 
 app.get('/delete-item',function(req,res){
 
-    console.log(req.query);
+   let id=req.query.id;
 
-    let item=req.query.item;
+   Shopping.findByIdAndDelete(id,function(err){
 
-    let itemIndex=shoppingList.findIndex(listitem => listitem.item==item);
+     if(err){
 
-    if(itemIndex!=-1){
+        console.log("error ocurred while deleating the item");
+     }
 
-        shoppingList.splice(itemIndex,1);
-
-        res.redirect('/');
-    }
+     return res.redirect('/');
+   });
 });
 
 
