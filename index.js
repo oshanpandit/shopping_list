@@ -35,12 +35,21 @@ var shoppingList=[
 ];
 
 
+
+
 app.get('/',function(req,res){
 
     res.render('home',{
 
         shopping_list:shoppingList
     });
+});
+
+app.post('/save-item',function(req,res){
+
+    shoppingList.push(req.body);
+
+    res.redirect('/');
 });
 
 
